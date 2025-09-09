@@ -6,28 +6,28 @@ set "PRESET1=windows-debug-static-codestyle"
 set "PRESET2=windows-release-static"
 
 :select
-if "%~1"=="" (
-    echo.
-    echo Wybierz opcje:
-    echo   0  - Debug Windows
-    echo   1  - Debug Windows + CodeStyle
-    echo   2  - Release Windows
-    echo   3  - Debug Windows (bez clean)
-    echo   4  - Debug Windows + CodeStyle (bez clean)
-    echo   5  - Release Windows (bez clean)
-    echo   6  - Debug Windows (skip cmakeTest)
-    echo   7  - Debug Windows + CodeStyle (skip cmakeTest)
-    echo   8  - Release Windows (skip cmakeTest)
-    echo   9  - Debug Windows (bez clean, skip cmakeTest)
-    echo   a  - Debug Windows + CodeStyle (bez clean, skip cmakeTest)
-    echo   b  - Release Windows (bez clean, skip cmakeTest)
-    echo   ENTER - wyjscie
-    echo.
-    set /p choice=Podaj opcje (0-9,a-b lub ENTER aby wyjsc):
-    if "!choice!"=="" goto end
-) else (
-    set "choice=%~1"
-)
+set "choice=%~1"
+if not "%choice%"=="" goto have_choice
+echo.
+echo Wybierz opcje:
+echo   0  - Debug Windows
+echo   1  - Debug Windows + CodeStyle
+echo   2  - Release Windows
+echo   3  - Debug Windows (bez clean)
+echo   4  - Debug Windows + CodeStyle (bez clean)
+echo   5  - Release Windows (bez clean)
+echo   6  - Debug Windows (skip cmakeTest)
+echo   7  - Debug Windows + CodeStyle (skip cmakeTest)
+echo   8  - Release Windows (skip cmakeTest)
+echo   9  - Debug Windows (bez clean, skip cmakeTest)
+echo   a  - Debug Windows + CodeStyle (bez clean, skip cmakeTest)
+echo   b  - Release Windows (bez clean, skip cmakeTest)
+echo   ENTER - wyjscie
+echo.
+set /p choice=Podaj opcje (0-9,a-b lub ENTER aby wyjsc):
+if "!choice!"=="" goto end
+
+:have_choice
 
 set "skipCmakeTest=0"
 set "doClean=1"
